@@ -79,7 +79,7 @@ def _get_page(pagerequest):
     # Note that we include a sleep to avoid overloading the scholar server
     time.sleep(5+random.uniform(0, 5))
     resp = _SESSION.get(pagerequest, headers=_HEADERS, cookies=_COOKIES)
-    if resp.status_code == 200:
+    if resp.status_code == 200 and 'gs_captcha_f' not in resp.text:
         return resp.text
 #     if resp.status_code == 503:
 #         # Inelegant way of dealing with the G captcha
