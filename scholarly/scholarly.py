@@ -80,6 +80,7 @@ def _get_page(pagerequest):
     time.sleep(5+random.uniform(0, 5))
     resp = _SESSION.get(pagerequest, headers=_HEADERS, cookies=_COOKIES)
     if resp.status_code == 200 and 'gs_captcha_f' not in resp.text:
+        # Valid request: with or without search results, but without authenticiation.
         # Situations does work:
         # 1. Status code 200 but ask for captcha.
         # 2. Status code 429: too many tries.
