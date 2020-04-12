@@ -81,15 +81,15 @@ def _get_page(pagerequest):
     resp = _SESSION.get(pagerequest, headers=_HEADERS, cookies=_COOKIES)
     if resp.status_code == 200:
         return resp.text
-    if resp.status_code == 503:
-        # Inelegant way of dealing with the G captcha
-        raise Exception('Error: {0} {1}'.format(resp.status_code, resp.reason))
-        # TODO: Need to fix captcha handling
-        # dest_url = requests.utils.quote(_SCHOLARHOST+pagerequest)
-        # soup = BeautifulSoup(resp.text, 'html.parser')
-        # captcha_url = soup.find('img').get('src')
-        # resp = _handle_captcha(captcha_url)
-        # return _get_page(re.findall(r'https:\/\/(?:.*?)(\/.*)', resp)[0])
+#     if resp.status_code == 503:
+#         # Inelegant way of dealing with the G captcha
+#         raise Exception('Error: {0} {1}'.format(resp.status_code, resp.reason))
+#         # TODO: Need to fix captcha handling
+#         # dest_url = requests.utils.quote(_SCHOLARHOST+pagerequest)
+#         # soup = BeautifulSoup(resp.text, 'html.parser')
+#         # captcha_url = soup.find('img').get('src')
+#         # resp = _handle_captcha(captcha_url)
+#         # return _get_page(re.findall(r'https:\/\/(?:.*?)(\/.*)', resp)[0])
     else:
         raise Exception('Error: {0} {1}'.format(resp.status_code, resp.reason))
 
